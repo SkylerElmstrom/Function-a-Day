@@ -1,7 +1,7 @@
 ---
-title: "About this blog"
+title: "About"
 description: |
-  Some additional details about the blog
+  Emily Nebergall started this challenge for our Data Science Discord group. The goal is to learn a new R function every day and sharewhat we have learned! R is a big code universe. I started today by perusing a "big data" analysis of the [top 100 R packages](https://towardsdatascience.com/top-100-most-used-r-functions-on-github-9caf2b81b314) used on all of GitHub. Each day, I will move down the list and pick a function I am unfamiliar with from the most popular [R packages](https://github.com/v-kozhevnikov/GitHub_R_commands/blob/master/data/top_100_packages.csv).
 ---
 
 ```{r setup, include=FALSE}
