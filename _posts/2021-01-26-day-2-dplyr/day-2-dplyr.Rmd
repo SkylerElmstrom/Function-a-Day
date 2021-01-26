@@ -1,0 +1,38 @@
+---
+title: "Day 2 - dplyr::recode()"
+description: |
+  The 2nd most used R package is... dplyr
+date: 01-23-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+library(tidyverse)
+
+TopRpack <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_100_packages.csv")
+TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv")
+```
+
+### dplyr! (Surprise #2?)
+
+`dplyr` has become a mainstay in my code: it's easy to read, easy to write, and part of tidyverse – a collection of packages I use nearly every time I use R. Have you used all of the top 20 `dplyr` functions? Many of them are now deprecated since it was integrated with tidyverse.
+
+```{r}
+TopRFunc.dplyr <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv") %>%
+  filter(library == 'dplyr')
+
+knitr::kable(TopRFunc.dplyr[1:20,2:3],
+             table.attr = "style='width:60%;'",
+             col.names = Hmisc::capitalize(names(TopRFunc.dplyr[,2:3])),
+             caption = "Top 20 dplyr Functions on GitHub") %>%
+  kableExtra::kable_styling(position = "center",
+                            bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+### dplyr::recode
+Coming in at #23 on our list, `dplyr`'s [`recode`](https://dplyr.tidyverse.org/reference/recode.html) is a great help for me when working with GIS tables that come in coded values (i.e. land cover classifications). `[recode()](https://dplyr.tidyverse.org/reference/recode.html)` will take inputs and replace them with your new terms. This can be combined with other functions using pipes or `grep()` to match string patterns within the `recode()`.
+
+

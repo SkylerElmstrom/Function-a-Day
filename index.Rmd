@@ -1,0 +1,5 @@
+---
+title: "Function-a-Day"
+site: distill::distill_website
+listing: posts
+---

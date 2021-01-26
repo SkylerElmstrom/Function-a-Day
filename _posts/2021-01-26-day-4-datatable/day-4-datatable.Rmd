@@ -1,0 +1,74 @@
+---
+title: "Day 4 - data.table::data.table"
+description: |
+  The 4th most used R package is... shiny? SKIP... data.table!
+date: 01-25-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+library(tidyverse)
+
+TopRpack <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_100_packages.csv")
+TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv")
+```
+
+### data.table!
+
+If you are a fan of speed, memory efficiency, and consistent syntax, the `data.table` package offers some higher level functions that operate well with enterprise-level analyses – I'm talking big data, lots of crunching, where the nanoseconds of every operation count. Sure, most things done in data.table can be done in `dplyr` and are easier to read that way. But data.table is varsity level R programming. The `data.table` dialect has a learning curve but the main goal of `data.table` functions are to keep inherently related processes together (i.e. subsets, joins, aggregations, etc.) As per usual, here are the top 10 most used `data.table` functions:
+
+```{r echo = F, results = 'show'}
+TopRFunc.dt <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv") %>%
+  filter(library == 'data.table')
+
+knitr::kable(TopRFunc.dt[1:10,2:3],
+             table.attr = "style='width:60%;'",
+             col.names = Hmisc::capitalize(names(TopRFunc.dt[,2:3])),
+             caption = "Top 10 data.table Functions on GitHub") %>%
+  kableExtra::kable_styling(position = "center",
+                            bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+### data.table
+
+There are only a few functions from the `data.table` but their primary purpose is to enhance base R data frames. The greatest power comes in manipulating objects with the main function `data.table()`. There is a good introduction here: [Introduction to data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html).
+
+The main syntax is `DT[i, j, by]` where `i` means "on which rows? i.e. WHERE", `j` means "what to do i.e SELECT?", and `by` means "grouped by what?".
+
+Or, as mentioned in the help files, "The way to read this out loud is: "Take `DT`, subset rows by `i`, then compute `j` grouped by `by`." 
+
+#### Example
+```{r}
+# More data.table usage ideas at http://rstudio-pubs-static.s3.amazonaws.com/428441_39cf3780625b46aca650f50125b57506.html
+
+# Loading iris dataset as a data.table
+iris.dt <- data.table::data.table(iris)
+
+# Summarising by species
+# .() syntax calls on specific columns rather than spelling out iris.dt$Sepal.Length
+
+iris.mean <- iris.dt[, .(Mean_Sepal_Length = mean(Sepal.Length)), by=.(Species)]
+iris.mean
+
+# Count observations by a grouping
+iris.nrow <- iris.dt[, .N, by=.(Species)]
+iris.nrow
+```
+
+There are many other powerful options for data.table functions like `.()` and `.N` that can be used to VERY quickly get information from a data frame. Someday I'll explore this package in more detail.
+
+From the help:
+
+```
+A data.table is a list of vectors, just like a data.frame. However :
+
+  1. it never has or uses rownames. Rownames based indexing can be done by setting a key of one or more columns or done ad-hoc using the on argument (now preferred).
+
+  2. it has enhanced functionality in [.data.table for fast joins of keyed tables, fast aggregation, fast last observation carried forward (LOCF) and fast add/modify/delete of columns by reference with no copy at all.
+```
+
+
+

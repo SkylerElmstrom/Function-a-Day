@@ -1,0 +1,66 @@
+---
+title: "Day 3 - plyr::ddply"
+description: |
+  The 3rd most used R package is... plyr
+date: 01-24-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+library(tidyverse)
+
+TopRpack <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_100_packages.csv")
+TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv")
+```
+
+### plyr!
+
+`plyr` is not a package I've had to use frequently – likely because I use other tidyverse packages. `dplyr` was meant to be faster and more efficient than `plyr`. Perhaps `plyr` still has some uses. Here are the top 10 `plyr` functions:
+
+```{r}
+TopRFunc.plyr <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv") %>%
+  filter(library == 'plyr')
+
+knitr::kable(TopRFunc.plyr[1:10,2:3],
+             table.attr = "style='width:60%;'",
+             col.names = Hmisc::capitalize(names(TopRFunc.plyr[,2:3])),
+             caption = "Top 10 plyr Functions on GitHub") %>%
+  kableExtra::kable_styling(position = "center",
+                            bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+<br>
+
+### plyr::ddply
+$#1$ on our function list, `plyr`'s [ddply](https://www.rdocumentation.org/packages/plyr/versions/1.8.6/topics/ddply). `ddply` takes a tedious task and makes it fit in one line:
+<br><br>
+```Split a Data Frame, Apply a Function, And Return Results In A Data Frame.```
+<br>
+
+#### Example with Iris Data
+
+```{r}
+# Borrowed from https://stackoverflow.com/questions/54774280/plyrddply-equivalent-in-dplyr
+# A function
+func = function(x) {
+  mod = lm(Sepal.Length ~ Petal.Width, data = x)
+  mod_coefs = broom::tidy(mod)
+}
+
+# plyr::ddply used with predefined function
+plyr.df <- plyr::ddply(iris, "Species", func)
+plyr.df
+```
+<br>
+
+I am more familiar with `dplyr` methods that would look like this:
+
+```{r}
+# dplyr function chain style
+dplyr.df <- iris %>%
+  group_by(Species) %>%
+  do(func(.)) # uses grouped iris above as input
+dplyr.df
+```

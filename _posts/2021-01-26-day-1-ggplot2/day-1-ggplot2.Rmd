@@ -1,0 +1,47 @@
+---
+title: "Day 1 - ggplot2::qplot()"
+description: |
+  The most used R package is... ggplot! Surprise?
+date: 01-22-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+library(tidyverse)
+
+TopRpack <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_100_packages.csv")
+TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv")
+```
+
+Emily Nebergall started this challenge for our Data Science Discord group. The goal is to learn a new R function every day and share what we have learned! R is a big code universe. I started today by perusing a "big data" analysis of the [top 100 R packages](https://towardsdatascience.com/top-100-most-used-r-functions-on-github-9caf2b81b314) used on all of GitHub. Each day, I will move down the list and pick a function I am unfamiliar with from the most popular [R packages](https://github.com/v-kozhevnikov/GitHub_R_commands/blob/master/data/top_100_packages.csv).
+I've used `ggplot2` pretty extensively so finding something unfamiliar to me was challenging. Let's see what the top 10 or 20 `ggplot` functions are:
+<br>
+
+```{r results = 'show'}
+TopRFunc.ggplot <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv") %>%
+  filter(library == 'ggplot2')
+
+knitr::kable(TopRFunc.ggplot[1:20,2:3],
+             table.attr = "style='width:60%;'",
+             col.names = Hmisc::capitalize(names(TopRFunc.ggplot[,2:3])),
+             caption = "Top 20 ggplot2 Functions on GitHub") %>%
+  kableExtra::kable_styling(position = "center",
+                            bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+<br>
+
+### ggplot2::qplot
+No surprise still with the top 10 or even 20 ggplot functions. I had to scroll down to **#45** (not bad!) before finding one I haven't heard of: [**quick plot!**](https://ggplot2.tidyverse.org/reference/qplot.html)
+
+`qplot` is meant to be a shortcut for plotting data. It lacks the fine control ggplot has but it works great for quickly visualizing simple data sets.
+<br>
+
+#### Example
+```{r}
+qplot(body_mass_g, flipper_length_mm, data = palmerpenguins::penguins, color = species)
+```
+<br>
+
