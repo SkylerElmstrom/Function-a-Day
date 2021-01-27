@@ -11,4 +11,5 @@ create_post("Day 1 - ggplot2")
 create_post("Day 2 - dplyr")
 create_post("Day 3 - plyr")
 create_post("Day 4 - data.table")
+create_post("Day 5 - reshape2")
 

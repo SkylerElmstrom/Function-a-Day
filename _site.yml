@@ -10,3 +10,4 @@ navbar:
     - text: "About"
       href: about.html
 output: distill::distill_article
+repository_url: https://github.com/SkylerElmstrom/Function-a-Day

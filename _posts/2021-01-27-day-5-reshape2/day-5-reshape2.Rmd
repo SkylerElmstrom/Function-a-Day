@@ -1,0 +1,58 @@
+---
+title: "Day 5 - reshape2::melt"
+description: |
+  The 5th most used R package is... reshape2?!
+date: 01-27-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+library(tidyverse)
+
+TopRpack <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_100_packages.csv")
+TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv")
+```
+
+### Reshape2
+
+Frustrated with wide format data when it needs to be long for plotting or aggregating? Or long data when you want it to be wide? Look no further than reshape2! Well, perhaps if it was still 2013 and there were no other alternatives. I digress; reshape2 still works and does it well. Would it be the #5 R package used if it didn't? This package has only 3 functions but the most important one seems to be `melt()`:
+
+```{r echo = F, results = 'show', preview = T}
+TopRFunc.reshape2 <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv") %>%
+  filter(library == 'reshape2')
+
+knitr::kable(TopRFunc.reshape2[1:3,2:3],
+             table.attr = "style='width:60%;'",
+             col.names = Hmisc::capitalize(names(TopRFunc.reshape2[,2:3])),
+             caption = "The only 3 reshape2 Functions") %>%
+  kableExtra::kable_styling(position = "center",
+                            bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+### reshape2::melt()
+
+The [melt()](https://www.rdocumentation.org/packages/reshape2/versions/1.4.4/topics/melt) function makes data with many columns and fewer rows (wide!), to data with fewer columns and more rows (looooooong).
+
+#### Example
+
+I am using the base R air quality data set here which has air quality variables in their own columns as well as a month and day column.
+
+```{r}
+data(airquality)
+head(airquality)
+```
+
+But say we want those air quality variables mapped out into single rows to make our work somewhere else a little less complicated:
+
+```{r}
+airquality.long <- reshape2::melt(airquality, id.vars = c("Month", "Day")) # makes air quality long and keeps month and day column
+head(distinct(airquality.long, variable, .keep_all = T), 4) # shows each variable in the new long format
+```
+
+#### To melt() or not to melt()?
+
+Melt was so useful that other people tried to make it better. `data.table`'s `melt()` function claims to work faster and better than `reshape2`. Tidyverse's `tidyr` package also has similar functions called `pivot_long()` and `pivot_wide()`. I'm sure these packages' alternatives will catch up in popularity once they've been around as long as `reshape2` has!
+
