@@ -1,5 +1,5 @@
 ---
-title: "Day 3 - plyr::ddply"
+title: "Day 3 - plyr::ddply()"
 description: |
   The 3rd most used R package is... plyr
 date: 01-24-2021

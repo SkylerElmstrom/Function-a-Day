@@ -1,5 +1,5 @@
 ---
-title: "Day 4 - data.table::data.table"
+title: "Day 4 - data.table::data.table()"
 description: |
   The 4th most used R package is... shiny? SKIP... data.table!
 date: 01-25-2021
