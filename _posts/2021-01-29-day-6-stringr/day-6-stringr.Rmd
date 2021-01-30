@@ -1,0 +1,51 @@
+---
+title: "Day 6 - stringr::str_trim()"
+description: |
+  The 6th most used R package is... stringr!
+date: 01-27-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+library(tidyverse)
+
+TopRpack <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_100_packages.csv")
+TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv")
+```
+
+### stringr
+
+the `stringr` package is all about the manipulation of strings in R (pretty self explanatory right?). It's inclusion in the tidyverse collective means, in my mind, it is one of the most useful packages for R out there. I haven't used `stringr` much, but I am familiar with `regex` or regular expressions using python to search for and replace specific patterns of strings. By the looks of it, `stringr` makes the syntax for string detection and manipulation a little easier in R and it works out of the box with `%>%` function chains. The regex functionality for more advanced string manipulations is also available using `stringr`.
+
+For more `stringr` introductions: [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+
+```{r echo = F, results = 'show', preview = T}
+TopRFunc.stringr <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/master/data/top_2000_functions.csv") %>%
+  filter(library == 'stringr')
+
+knitr::kable(TopRFunc.stringr[1:10,2:3],
+             table.attr = "style='width:60%;'",
+             col.names = Hmisc::capitalize(names(TopRFunc.stringr[,2:3])),
+             caption = "Top 10 stringr Functions") %>%
+  kableExtra::kable_styling(position = "center",
+                            bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+### stringr::str_trim()
+
+More often then not, a split string or a hand-me-down data set will include some strings with strange and difficult to visually detect white space such as accidental tab spaces, extra spaces, and return lines. `str_trim()` helps remove all leading and trailing white space from strings. The function itself is easy to remember and always useful. Similarly, `str_squish()` removes excess white space.
+
+#### Example
+
+```{r}
+str_trim("  String with trailing and leading white space\t")
+str_trim("\n\nString with trailing and leading white space\n\n")
+
+str_squish("  String with trailing,  middle, and leading white space\t")
+str_squish("\n\nString with excess,  trailing and leading white   space\n\n")
+```
+
+
