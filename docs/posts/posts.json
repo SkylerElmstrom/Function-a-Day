@@ -4,11 +4,11 @@
     "title": "Day 5 - reshape2::melt()",
     "description": "The 5th most used R package is... reshape2?!",
     "author": [],
-    "date": "2021-01-29",
+    "date": "2021-01-26",
     "categories": [],
     "contents": "\r\nReshape2\r\nFrustrated with wide format data when it needs to be long for plotting or aggregating? Or long data when you want it to be wide? Look no further than reshape2! Well, perhaps if it was still 2013 and there were no other alternatives. I digress; reshape2 still works and does it well. Would it be the #5 R package used if it didn’t? This package has only 3 functions but the most important one seems to be melt():\r\n\r\n\r\nTable 1: The only 3 reshape2 Functions\r\n\r\n\r\nContent\r\n\r\n\r\nCount\r\n\r\n\r\nmelt\r\n\r\n\r\n5862\r\n\r\n\r\ndcast\r\n\r\n\r\n1514\r\n\r\n\r\nacast\r\n\r\n\r\n202\r\n\r\n\r\nreshape2::melt()\r\nThe melt() function makes data with many columns and fewer rows (wide!), to data with fewer columns and more rows (looooooong).\r\nExample\r\nI am using the base R air quality data set here which has air quality variables in their own columns as well as a month and day column.\r\n\r\n\r\ndata(airquality)\r\nhead(airquality)\r\n\r\n\r\n  Ozone Solar.R Wind Temp Month Day\r\n1    41     190  7.4   67     5   1\r\n2    36     118  8.0   72     5   2\r\n3    12     149 12.6   74     5   3\r\n4    18     313 11.5   62     5   4\r\n5    NA      NA 14.3   56     5   5\r\n6    28      NA 14.9   66     5   6\r\n\r\nBut say we want those air quality variables mapped out into single rows to make our work somewhere else a little less complicated:\r\n\r\n\r\nairquality.long <- reshape2::melt(airquality, id.vars = c(\"Month\", \"Day\")) # makes air quality long and keeps month and day column\r\nhead(distinct(airquality.long, variable, .keep_all = T), 4) # shows each variable in the new long format\r\n\r\n\r\n  Month Day variable value\r\n1     5   1    Ozone  41.0\r\n2     5   1  Solar.R 190.0\r\n3     5   1     Wind   7.4\r\n4     5   1     Temp  67.0\r\n\r\nTo melt() or not to melt()?\r\nMelt was so useful that other people tried to make it better. data.table‘s melt() function claims to work faster and better than reshape2. Tidyverse’s tidyr package also has similar functions called pivot_long() and pivot_wide(). I’m sure these packages’ alternatives will catch up in popularity once they’ve been around as long as reshape2 has!\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-01-29T16:14:09-08:00",
+    "last_modified": "2021-01-29T16:16:23-08:00",
     "input_file": "day-5-reshape2.utf8.md"
   },
   {
@@ -16,11 +16,11 @@
     "title": "Day 6 - stringr::str_trim()",
     "description": "The 6th most used R package is... stringr!",
     "author": [],
-    "date": "2021-01-27",
+    "date": "2021-01-26",
     "categories": [],
     "contents": "\r\nstringr\r\nthe stringr package is all about the manipulation of strings in R (pretty self explanatory right?). It’s inclusion in the tidyverse collective means, in my mind, it is one of the most useful packages for R out there. I haven’t used stringr much, but I am familiar with regex or regular expressions using python to search for and replace specific patterns of strings. By the looks of it, stringr makes the syntax for string detection and manipulation a little easier in R and it works out of the box with %>% function chains. The regex functionality for more advanced string manipulations is also available using stringr.\r\nFor more stringr introductions: stringr vignette\r\n\r\n\r\nTable 1: Top 10 stringr Functions\r\n\r\n\r\nContent\r\n\r\n\r\nCount\r\n\r\n\r\nstr_detect\r\n\r\n\r\n2457\r\n\r\n\r\nstr_replace_all\r\n\r\n\r\n2322\r\n\r\n\r\nstr_replace\r\n\r\n\r\n1465\r\n\r\n\r\nstr_c\r\n\r\n\r\n1171\r\n\r\n\r\nstr_trim\r\n\r\n\r\n1128\r\n\r\n\r\nstr_sub\r\n\r\n\r\n965\r\n\r\n\r\nstr_split\r\n\r\n\r\n929\r\n\r\n\r\nstr_extract\r\n\r\n\r\n902\r\n\r\n\r\nstr_split_fixed\r\n\r\n\r\n667\r\n\r\n\r\nstr_match\r\n\r\n\r\n387\r\n\r\n\r\nstringr::str_trim()\r\nMore often then not, a split string or a hand-me-down data set will include some strings with strange and difficult to visually detect white space such as accidental tab spaces, extra spaces, and return lines. str_trim() helps remove all leading and trailing white space from strings. The function itself is easy to remember and always useful. Similarly, str_squish() removes excess white space.\r\nExample\r\n\r\n\r\nstr_trim(\"  String with trailing and leading white space\\t\")\r\n\r\n\r\n[1] \"String with trailing and leading white space\"\r\n\r\nstr_trim(\"\\n\\nString with trailing and leading white space\\n\\n\")\r\n\r\n\r\n[1] \"String with trailing and leading white space\"\r\n\r\nstr_squish(\"  String with trailing,  middle, and leading white space\\t\")\r\n\r\n\r\n[1] \"String with trailing, middle, and leading white space\"\r\n\r\nstr_squish(\"\\n\\nString with excess,  trailing and leading white   space\\n\\n\")\r\n\r\n\r\n[1] \"String with excess, trailing and leading white space\"\r\n\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-01-29T16:11:56-08:00",
+    "last_modified": "2021-01-29T16:16:15-08:00",
     "input_file": "day-6-stringr.utf8.md"
   },
   {

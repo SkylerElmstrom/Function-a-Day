@@ -2,7 +2,7 @@
 title: "Day 5 - reshape2::melt()"
 description: |
   The 5th most used R package is... reshape2?!
-date: 01-29-2021
+date: 01-26-2021
 output:
   distill::distill_article:
     self_contained: false

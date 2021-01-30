@@ -2,7 +2,7 @@
 title: "Day 6 - stringr::str_trim()"
 description: |
   The 6th most used R package is... stringr!
-date: 01-27-2021
+date: 01-26-2021
 output:
   distill::distill_article:
     self_contained: false
