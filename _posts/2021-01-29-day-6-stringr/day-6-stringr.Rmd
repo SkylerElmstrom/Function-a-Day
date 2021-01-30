@@ -18,7 +18,7 @@ TopRFunc <- read.csv("https://github.com/v-kozhevnikov/GitHub_R_commands/raw/mas
 
 ### stringr
 
-the `stringr` package is all about the manipulation of strings in R (pretty self explanatory right?). It's inclusion in the tidyverse collective means, in my mind, it is one of the most useful packages for R out there. I haven't used `stringr` much, but I am familiar with `regex` or regular expressions using python to search for and replace specific patterns of strings. By the looks of it, `stringr` makes the syntax for string detection and manipulation a little easier in R and it works out of the box with `%>%` function chains. The regex functionality for more advanced string manipulations is also available using `stringr`.
+The `stringr` package is all about the manipulation of strings in R (pretty self explanatory right?). It's inclusion in the tidyverse collective means, in my mind, it is one of the most useful packages for R out there. I haven't used `stringr` much, but I am familiar with `regex` or regular expressions using python to search for and replace specific patterns of strings. By the looks of it, `stringr` makes the syntax for string detection and manipulation a little easier in R and it works out of the box with `%>%` function chains. The regex functionality for more advanced string manipulations is also available using `stringr`.
 
 For more `stringr` introductions: [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
 
