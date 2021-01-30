@@ -1,5 +1,17 @@
 [
   {
+    "path": "posts/2021-01-29-day-6-stringr/",
+    "title": "Day 6 - stringr::str_trim()",
+    "description": "The 6th most used R package is... stringr!",
+    "author": [],
+    "date": "2021-01-27",
+    "categories": [],
+    "contents": "\r\nstringr\r\nthe stringr package is all about the manipulation of strings in R (pretty self explanatory right?). It’s inclusion in the tidyverse collective means, in my mind, it is one of the most useful packages for R out there. I haven’t used stringr much, but I am familiar with regex or regular expressions using python to search for and replace specific patterns of strings. By the looks of it, stringr makes the syntax for string detection and manipulation a little easier in R and it works out of the box with %>% function chains. The regex functionality for more advanced string manipulations is also available using stringr.\r\nFor more stringr introductions: stringr vignette\r\n\r\n\r\nTable 1: Top 10 stringr Functions\r\n\r\n\r\nContent\r\n\r\n\r\nCount\r\n\r\n\r\nstr_detect\r\n\r\n\r\n2457\r\n\r\n\r\nstr_replace_all\r\n\r\n\r\n2322\r\n\r\n\r\nstr_replace\r\n\r\n\r\n1465\r\n\r\n\r\nstr_c\r\n\r\n\r\n1171\r\n\r\n\r\nstr_trim\r\n\r\n\r\n1128\r\n\r\n\r\nstr_sub\r\n\r\n\r\n965\r\n\r\n\r\nstr_split\r\n\r\n\r\n929\r\n\r\n\r\nstr_extract\r\n\r\n\r\n902\r\n\r\n\r\nstr_split_fixed\r\n\r\n\r\n667\r\n\r\n\r\nstr_match\r\n\r\n\r\n387\r\n\r\n\r\nstringr::str_trim()\r\nMore often then not, a split string or a hand-me-down data set will include some strings with strange and difficult to visually detect white space such as accidental tab spaces, extra spaces, and return lines. str_trim() helps remove all leading and trailing white space from strings. The function itself is easy to remember and always useful. Similarly, str_squish() removes excess white space.\r\nExample\r\n\r\n\r\nstr_trim(\"  String with trailing and leading white space\\t\")\r\n\r\n\r\n[1] \"String with trailing and leading white space\"\r\n\r\nstr_trim(\"\\n\\nString with trailing and leading white space\\n\\n\")\r\n\r\n\r\n[1] \"String with trailing and leading white space\"\r\n\r\nstr_squish(\"  String with trailing,  middle, and leading white space\\t\")\r\n\r\n\r\n[1] \"String with trailing, middle, and leading white space\"\r\n\r\nstr_squish(\"\\n\\nString with excess,  trailing and leading white   space\\n\\n\")\r\n\r\n\r\n[1] \"String with excess, trailing and leading white space\"\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-01-29T16:19:05-08:00",
+    "input_file": "day-6-stringr.utf8.md"
+  },
+  {
     "path": "posts/2021-01-27-day-5-reshape2/",
     "title": "Day 5 - reshape2::melt()",
     "description": "The 5th most used R package is... reshape2?!",
@@ -10,18 +22,6 @@
     "preview": {},
     "last_modified": "2021-01-29T16:16:23-08:00",
     "input_file": "day-5-reshape2.utf8.md"
-  },
-  {
-    "path": "posts/2021-01-29-day-6-stringr/",
-    "title": "Day 6 - stringr::str_trim()",
-    "description": "The 6th most used R package is... stringr!",
-    "author": [],
-    "date": "2021-01-26",
-    "categories": [],
-    "contents": "\r\nstringr\r\nthe stringr package is all about the manipulation of strings in R (pretty self explanatory right?). It’s inclusion in the tidyverse collective means, in my mind, it is one of the most useful packages for R out there. I haven’t used stringr much, but I am familiar with regex or regular expressions using python to search for and replace specific patterns of strings. By the looks of it, stringr makes the syntax for string detection and manipulation a little easier in R and it works out of the box with %>% function chains. The regex functionality for more advanced string manipulations is also available using stringr.\r\nFor more stringr introductions: stringr vignette\r\n\r\n\r\nTable 1: Top 10 stringr Functions\r\n\r\n\r\nContent\r\n\r\n\r\nCount\r\n\r\n\r\nstr_detect\r\n\r\n\r\n2457\r\n\r\n\r\nstr_replace_all\r\n\r\n\r\n2322\r\n\r\n\r\nstr_replace\r\n\r\n\r\n1465\r\n\r\n\r\nstr_c\r\n\r\n\r\n1171\r\n\r\n\r\nstr_trim\r\n\r\n\r\n1128\r\n\r\n\r\nstr_sub\r\n\r\n\r\n965\r\n\r\n\r\nstr_split\r\n\r\n\r\n929\r\n\r\n\r\nstr_extract\r\n\r\n\r\n902\r\n\r\n\r\nstr_split_fixed\r\n\r\n\r\n667\r\n\r\n\r\nstr_match\r\n\r\n\r\n387\r\n\r\n\r\nstringr::str_trim()\r\nMore often then not, a split string or a hand-me-down data set will include some strings with strange and difficult to visually detect white space such as accidental tab spaces, extra spaces, and return lines. str_trim() helps remove all leading and trailing white space from strings. The function itself is easy to remember and always useful. Similarly, str_squish() removes excess white space.\r\nExample\r\n\r\n\r\nstr_trim(\"  String with trailing and leading white space\\t\")\r\n\r\n\r\n[1] \"String with trailing and leading white space\"\r\n\r\nstr_trim(\"\\n\\nString with trailing and leading white space\\n\\n\")\r\n\r\n\r\n[1] \"String with trailing and leading white space\"\r\n\r\nstr_squish(\"  String with trailing,  middle, and leading white space\\t\")\r\n\r\n\r\n[1] \"String with trailing, middle, and leading white space\"\r\n\r\nstr_squish(\"\\n\\nString with excess,  trailing and leading white   space\\n\\n\")\r\n\r\n\r\n[1] \"String with excess, trailing and leading white space\"\r\n\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-01-29T16:16:15-08:00",
-    "input_file": "day-6-stringr.utf8.md"
   },
   {
     "path": "posts/2021-01-26-day-4-datatable/",
